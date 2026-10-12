@@ -1,0 +1,56 @@
+config:
+  credentials: []
+  project_repos:
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: fix/updatego
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+    github.com/cessda/cessda.cmv.benchmark-guidance:
+      branch: master
+      repo: https://github.com/cessda/cessda.cmv.benchmark-guidance
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Acc:
+    repos:
+      github.com/cessda/cessda.cmv.benchmark-guidance git:
+        commands:
+        - /usr/bin/env sh .sqa/script.cloud_hardworking_moose.sh
+        container: qc.acc_daffodil_brilliant_rhinoceros
+  QC.Doc:
+    repos:
+      github.com/cessda/cessda.cmv.benchmark-guidance find_doc_files.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.eggplant_realistic_weasel.sh
+        container: qc.doc_thistle_proactive_elephant
+      github.com/cessda/cessda.cmv.benchmark-guidance git:
+        commands:
+        - /usr/bin/env sh .sqa/script.carmine_thankful_panda.sh
+        container: qc.doc_papaya_lively_tarantula
+      github.com/cessda/cessda.cmv.benchmark-guidance markdownlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.fern_ardent_quokka.sh
+        container: qc.doc_orchid_industrious_axolotl
+  QC.Lic:
+    repos:
+      github.com/cessda/cessda.cmv.benchmark-guidance licensee:
+        commands:
+        - /usr/bin/env sh .sqa/script.cardamom_amiable_dragon.sh
+        container: qc.lic_reef_tactful_badger
+  QC.Sty:
+    repos:
+      github.com/cessda/cessda.cmv.benchmark-guidance jsonlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.currant_goofy_lionfish.sh
+        container: qc.sty_ash_gentle_pelican
+      github.com/cessda/cessda.cmv.benchmark-guidance rubocop:
+        commands:
+        - /usr/bin/env sh .sqa/script.lilac_dedicated_stingray.sh
+        container: qc.sty_fern_rugged_bullfrog
+  QC.Ver:
+    repos:
+      github.com/cessda/cessda.cmv.benchmark-guidance get_git_tags.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.chestnut_skeptical_bear.sh
+        container: qc.ver_mauve_dreamy_spider
+timeout: 5400
